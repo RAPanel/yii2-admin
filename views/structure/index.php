@@ -34,6 +34,8 @@ foreach ($list as $page)
 
         <h1>Управляем структурой</h1>
 
+        <?= Html::a('+', ['edit/index', 'parent' => Yii::$app->request->get('id')], ['class' => 'button right tiny success']) ?>
+
         <?= Breadcrumbs::widget([
             'options' => ['class' => 'breadcrumbs'],
             'homeLink' => false,
@@ -44,11 +46,8 @@ foreach ($list as $page)
             'tableOptions' => ['style' => 'width:100%'],
             'dataProvider' => $dataProvider,
             'beforeRow' => function ($data, $id, $i, $grid) {
-                if ($i > 0) return false;
-                $parents = explode(',', $data->parent_list);
-                $key = array_search($data->parent_id, $parents) - 1;
-                if (isset($parents[$key]))
-                    return '<tr><td colspan="2"></td><td colspan="4">' . Html::a('... [up]', ['structure/index', 'id' => $parents[$key]]) . '</td></tr>';
+                if ($i == 0 && !empty($data->parent_id))
+                    return '<tr><td colspan="2"></td><td colspan="4">' . Html::a('... [up]', ['structure/index', 'id' => $data->parent_id]) . '</td></tr>';
                 return false;
             },
             'afterRow' => function ($data, $id, $i, $grid) {
@@ -72,7 +71,7 @@ foreach ($list as $page)
                     }
                 ],
                 'about',
-                'created',
+                'created_at:date',
                 [
                     'class' => ActionColumn::className(),
                     'buttons' => [

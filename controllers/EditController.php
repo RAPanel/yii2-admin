@@ -43,7 +43,7 @@ class EditController extends Controller
         $selectList = [];
         foreach (Yii::$app->params['modules'] as $key => $val)
             $selectList[$key] = Yii::t('admin.module', $val);
-        $config = require Yii::getAlias('@app/rere/' . $selectList[$base->module_id] . '/config/grid.php');
+        $config = require Yii::getAlias('@rere/' . $selectList[$base->module_id] . '/config/grid.php');
 
         if (($request = Yii::$app->request) && $request->isPost) {
             $models = [];

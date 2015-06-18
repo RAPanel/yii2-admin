@@ -15,7 +15,6 @@ use yii\widgets\Menu;
 //use rere\core\widgets\jstree\JsTree;
 
 \rere\core\widgets\foundation\FoundationAsset::register($this);
-//\hullagency\foundationicons\FoundationAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>

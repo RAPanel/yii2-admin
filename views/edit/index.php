@@ -43,7 +43,7 @@ if (!empty($data)):
         </div>
 
         <?= FormGenerator::widget([
-            'config' => require Yii::getAlias('@app/rere/' . $selectList[$base->module_id] . '/config/grid.php'),
+            'config' => require Yii::getAlias('@rere/' . $selectList[$base->module_id] . '/config/grid.php'),
             'form' => $form,
             'model' => $base,
         ]); ?>
