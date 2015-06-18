@@ -16,8 +16,12 @@
   "require": {
     "yiisoft/yii2": "*",
     "devgroup/ace": "*",
+    "amnah/yii2-user": "dev-master",
     "yiisoft/yii2-imagine": "~2.0.0",
-    "rere/core": "*"
+    "himiklab/yii2-jqgrid-widget": "*",
+    "2amigos/yii2-tinymce-widget": "~1.1",
+    "enyo/dropzone": "*",
+    "rere/yii2-core": "*"
   },
   "autoload": {
     "psr-4": {
