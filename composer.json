@@ -15,7 +15,7 @@
   ],
   "require": {
     "yiisoft/yii2": "*",
-    "devgroup/ace": "*",
+    "devgroup/yii2-ace-widget": "*",
     "amnah/yii2-user": "dev-master",
     "yiisoft/yii2-imagine": "~2.0.0",
     "himiklab/yii2-jqgrid-widget": "*",
