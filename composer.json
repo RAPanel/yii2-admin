@@ -21,7 +21,7 @@
     "himiklab/yii2-jqgrid-widget": "*",
     "2amigos/yii2-tinymce-widget": "~1.1",
     "enyo/dropzone": "*",
-    "rere/yii2-core": "*"
+    "rere/yii2-core": "dev-master"
   },
   "autoload": {
     "psr-4": {
