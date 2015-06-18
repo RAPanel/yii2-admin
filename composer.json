@@ -1,0 +1,27 @@
+{
+  "name": "rere/yii2-admin",
+  "description": "Easy & Powerful admin system",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "rere",
+      "email": "webmaster@rere-design.ru"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "devgroup/ace": "*",
+    "yiisoft/yii2-imagine": "~2.0.0",
+    "rere/core": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "rere\\admin\\": ""
+    }
+  }
+}
