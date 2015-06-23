@@ -8,7 +8,7 @@
 
 namespace rere\admin\controllers;
 
-use rere\core\defaultModels\Character;
+use rere\core\models\Character;
 use rere\core\models\Page;
 use Yii;
 use yii\helpers\VarDumper;
@@ -41,6 +41,7 @@ class StructureController extends Controller
                 $base = new Page();
                 $base->setAttributes([
                     'url' => '/',
+                    'with_child' => '1',
                     'name' => 'Главная',
                 ]);
                 if (!$base->save())
@@ -50,7 +51,8 @@ class StructureController extends Controller
             if ($base && $base->id) return $this->redirect(['index', 'id' => $base->id]);
         } else $base = Page::findOne($id);
 
-        if (empty($base)) throw new HttpException(404, 'Can`t find page');
+        if (empty($base)) throw new HttpException(404, Yii::t('rere.error', 'Can`t find page'));
+        elseif (!$base->with_child && $base->parent_id) $this->redirect([$this->action->id, 'id' => $base->parent_id]);
 
         return $this->render($this->action->id);
     }

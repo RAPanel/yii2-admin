@@ -14,11 +14,7 @@ use yii\web\JsExpression;
 
 class PhotoUpload extends DropZone
 {
-    public $types = [
-        'main' => 'основная',
-        'slider' => 'слайдер',
-        'full' => 'большая',
-    ];
+    public $types = [];
 
     public function init()
     {

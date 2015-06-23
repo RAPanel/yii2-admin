@@ -9,7 +9,7 @@
 namespace rere\admin\widgets;
 
 
-use rere\core\defaultModels\Character;
+use rere\core\models\Character;
 use rere\core\models\PageCharacters;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -26,7 +26,7 @@ class Characters extends InputWidget
         $result = '';
 
         $characters = [];
-        foreach ($this->model->pageCharacters as $character)
+        foreach ($this->model->characters as $character)
             $characters[$character->name] = $character;
 
         $result .= Html::beginTag('div', ['class' => 'characterList']);

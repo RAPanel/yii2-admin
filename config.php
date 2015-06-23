@@ -11,7 +11,7 @@ return [
     'layout' => 'index',
     'components' => [
         'user' => [
-            'class' => 'amnah\yii2\user\Module',
+            'class' => 'rere\user\Module',
             // set custom module properties here ...
         ],
         // список конфигураций компонентов

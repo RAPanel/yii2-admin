@@ -16,7 +16,7 @@ class RAPanel extends \yii\base\Module
         // инициализация модуля с помощью конфигурации, загруженной из config.php
         \Yii::configure($this, require(__DIR__ . '/config.php'));
         \Yii::$app->setModule('user', [
-            'class' => 'amnah\yii2\user\Module',
+            'class' => 'rere\user\Module',
             'modelClasses' => [
                 'Role' => 'rere\core\models\Role'
             ],

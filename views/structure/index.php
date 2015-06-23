@@ -12,6 +12,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
+
 $dataProvider = new \yii\data\ActiveDataProvider([
     'query' => Page::find()->where('parent_id=:id', ['id' => Yii::$app->request->get('id')]),
     'pagination' => [
@@ -25,8 +26,11 @@ $query->where('id=:id', [':id' => Yii::$app->request->get('id')]);
 if ($idList = Page::find()->where('id=:id', [':id' => Yii::$app->request->get('id')])->select('parent_id')->scalar())
     $query->orWhere('id IN(' . $idList . ')');
 $list = $query->all();
-foreach ($list as $page)
+foreach ($list as $page) {
+    if ($page->id == Yii::$app->request->get('id')) Yii::$app->params['goTopId'] = $page->parent_id;
     $links[] = ['label' => $page->name, 'url' => Yii::$app->request->get('id') == $page->id ? null : ['index', 'id' => $page->id]];
+
+}
 ?>
 
 <div class="row">
@@ -46,8 +50,8 @@ foreach ($list as $page)
             'tableOptions' => ['style' => 'width:100%'],
             'dataProvider' => $dataProvider,
             'beforeRow' => function ($data, $id, $i, $grid) {
-                if ($i == 0 && !empty($data->parent_id))
-                    return '<tr><td colspan="2"></td><td colspan="4">' . Html::a('... [up]', ['structure/index', 'id' => $data->parent_id]) . '</td></tr>';
+                if ($i == 0 && !empty(Yii::$app->params['goTopId']))
+                    return '<tr><td colspan="2"></td><td colspan="4">' . Html::a('... [up]', ['structure/index', 'id' => Yii::$app->params['goTopId']]) . '</td></tr>';
                 return false;
             },
             'afterRow' => function ($data, $id, $i, $grid) {

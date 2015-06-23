@@ -114,9 +114,9 @@ class EditController extends Controller
         return new HttpException(404);
     }
 
-    public function actionPhotoDelete($id)
+    public function actionPhotoDelete($id = null)
     {
-        return Photo::findOne($id)->delete();
+        return $id ? Photo::findOne($id)->delete() : $id;
     }
 
     public function actionCharacterAdd()
