@@ -72,6 +72,8 @@ class EditController extends Controller
             foreach ($models as $key => $value) {
                 if ($value->hasAttribute('page_id') && empty($value->page_id))
                     $value->page_id = $base->id;
+                if ($value->hasAttribute('owner_id') && empty($value->owner_id))
+                    $value->owner_id = $base->id;
                 if (!$value->validate())
                     $errors = ArrayHelper::merge($errors, $value->errors);
             }
