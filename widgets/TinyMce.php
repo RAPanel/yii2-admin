@@ -9,6 +9,8 @@
 namespace rere\admin\widgets;
 
 
+use yii\web\AssetManager;
+
 class TinyMce extends \dosamigos\tinymce\TinyMce
 {
     public $language = 'ru';
@@ -21,11 +23,23 @@ class TinyMce extends \dosamigos\tinymce\TinyMce
         ],
 
         'toolbar1' => "responsivefilemanager undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | fullscreen",
-        'external_filemanager_path' => '/app/rere/filemanager/vendor/filemanager/',
+        'external_filemanager_path' => '@rere/filemanager/vendor/filemanager/',
         'filemanager_title' => "Управление файлами",
         'external_plugins' => [
-            'filemanager' => '/app/rere/filemanager/vendor/tinymce/plugins/responsivefilemanager/plugin.min.js',
-            'responsivefilemanager' => '/app/rere/filemanager/vendor/tinymce/plugins/responsivefilemanager/plugin.min.js',
+            'filemanager' => '@rere/filemanager/vendor/tinymce/plugins/responsivefilemanager/plugin.min.js',
+            'responsivefilemanager' => '@rere/filemanager/vendor/tinymce/plugins/responsivefilemanager/plugin.min.js',
         ]
     ];
+
+    public function init()
+    {
+        array_walk_recursive($this->clientOptions, function (&$item) {
+            if (strpos($item, '@rere/filemanager/vendor') !== false){
+                $publish = (new AssetManager)->publish('@rere/filemanager/vendor');
+                $item = str_replace('@rere/filemanager/vendor', $publish[1], $item);
+            }
+            if (strpos($item, '@') !== false) $item = str_replace(\Yii::getAlias('@webroot'), '', \Yii::getAlias($item));
+        });
+        parent::init();
+    }
 }

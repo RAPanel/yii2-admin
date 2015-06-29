@@ -28,16 +28,16 @@ use yii\helpers\Url;
             'columns' => [
 //                ['class' => CheckboxColumn::className()],
                 'id',
-                [
+                /*[
                     'attribute' => 'photo',
                     'content' => function ($data) {
                         return $data->photo ? Html::img($data->photo->getHref('40x40')) : null;
                     }
-                ],
+                ],*/
                 'username',
                 'email',
                 'role.name',
-                'create_time:datetime',
+                'created_at:datetime',
                 /*[
                     'attribute' => 'name',
                     'content' => function ($data) {

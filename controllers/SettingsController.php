@@ -10,11 +10,11 @@ namespace rere\admin\controllers;
 
 
 use app\models\BannerData;
-use app\models\User;
-use rere\core\defaultModels\Replaces;
-use rere\core\defaultModels\Settings;
 use rere\core\models\PageComments;
+use rere\core\models\Replaces;
+use rere\core\models\Settings;
 use rere\core\widgets\fileManager\FileManager;
+use rere\user\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
