@@ -8,7 +8,7 @@
 
 namespace rere\admin\controllers;
 
-use rere\core\defaultModels\Character;
+use rere\core\models\Character;
 use rere\core\models\Page;
 use rere\core\models\Photo;
 use Yii;

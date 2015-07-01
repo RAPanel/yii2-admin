@@ -27,6 +27,7 @@ $result .= Html::tag('div', AutoComplete::widget([
 ]), ['class' => 'columns']);
 $result .= Html::tag('div', Html::activeDropDownList($model, 'type', [
     'text' => 'Текстовая строка [textField]',
+    'number' => 'Цена [price]',
     'textarea' => 'Текстовое поле [textArea]',
     'checkbox' => 'Выбор Да/Нет [checkBox]',
 ]), ['class' => 'columns']);

@@ -27,25 +27,25 @@ class Characters extends InputWidget
 
         $characters = [];
         foreach ($this->model->characters as $character)
-            $characters[$character->name] = $character;
+            $characters[$character->page_id] = $character;
 
         $result .= Html::beginTag('div', ['class' => 'characterList']);
 
         foreach (Character::find()->all() as $key => $data) {
-            $character = isset($characters[$data->url]) ? $characters[$data->url] : new PageCharacters();
+            $character = isset($characters[$data->id]) ? $characters[$data->id] : new PageCharacters();
             $id = $character->id ? $character->id : $key;
 
             if ($character->id) $result .= Html::hiddenInput('PageCharacters[' . $id . '][id]', $character->id);
             $result .= Html::hiddenInput('PageCharacters[' . $id . '][value]', '');
-            if (empty($character->name)) {
-                $character->name = $data->url;
-                $result .= Html::hiddenInput('PageCharacters[' . $id . '][name]', $data->url);
+            if (empty($character->character_id)) {
+                $character->character_id = $data->id;
+                $result .= Html::hiddenInput('PageCharacters[' . $id . '][character_id]', $data->id);
             }
             if ($data['type'] == 'checkbox') {
                 $result .= Html::checkbox('PageCharacters[' . $id . '][value]', $character->value, ['id' => 'character' . $id]);
                 $result .= Html::label($character->name, 'character' . $id);
             } else {
-                $result .= Html::label($character->name, 'character' . $id);
+                $result .= Html::label($character->getName(), 'character' . $id);
                 $result .= Html::input($data['type'], 'PageCharacters[' . $id . '][value]', $character->value ? $character->value : null, ['id' => 'character' . $id]);
             }
         }
