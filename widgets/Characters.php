@@ -27,7 +27,7 @@ class Characters extends InputWidget
 
         $characters = [];
         foreach ($this->model->characters as $character)
-            $characters[$character->page_id] = $character;
+            $characters[$character->character_id] = $character;
 
         $result .= Html::beginTag('div', ['class' => 'characterList']);
 

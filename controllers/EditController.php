@@ -82,7 +82,6 @@ class EditController extends Controller
                 /** @var ActiveRecord $value */
                 $save = $value->save(false) && $save;
             } else $save = false;
-
             if ($save) {
                 $this->redirect($back ? $back : ['structure/index', 'id' => $id ? $id : $parent]);
             }
