@@ -13,15 +13,25 @@
       "email": "webmaster@rere-design.ru"
     }
   ],
+  "minimum-stability": "stable",
   "require": {
+    "php": ">=5.4.0",
     "yiisoft/yii2": "*",
+    "yiisoft/yii2-jui": "~2.0.0",
+    "yiisoft/yii2-swiftmailer": "*",
+    "rere/yii2-core": "*@dev",
+    "rere/yii2-image": "*@dev",
+    "rere/yii2-user": "*",
+    "bower-asset/dropzone": "*",
+    "bower-asset/foundation": "*",
+    "bower-asset/jquery-tags-input": "*",
+    "bower-asset/jstree": "*",
+    "bower-asset/modernizr": "*",
+    "bower-asset/Filemanager": ">=2",
     "devgroup/yii2-ace-widget": "*",
-    "amnah/yii2-user": "*",
-    "yiisoft/yii2-imagine": "~2.0.0",
     "2amigos/yii2-tinymce-widget": "~1.1"
   },
   "require-dev": {
-    "rere/yii2-core": "*"
   },
   "autoload": {
     "psr-4": {
