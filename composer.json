@@ -19,6 +19,7 @@
     "yiisoft/yii2": "*",
     "yiisoft/yii2-jui": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "*",
+    "rere/core": "*",
     "bower-asset/dropzone": "*",
     "bower-asset/foundation": "*",
     "bower-asset/jquery-tags-input": "*",
