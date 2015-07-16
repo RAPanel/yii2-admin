@@ -10,6 +10,8 @@ namespace rere\admin;
 
 class RAPanel extends \yii\base\Module
 {
+    public $settings;
+
     public function init()
     {
         parent::init();
