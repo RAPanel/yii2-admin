@@ -33,7 +33,7 @@ class FormGenerator extends \yii\base\Widget
         $items = [];
         foreach (array_keys($this->config) as $val)
             $items[] = [
-                'label' => \Yii::t('rere.admin', $val),
+                'label' => \Yii::t('rere.admin', ucfirst($val)),
                 'url' => '#' . strtolower($val),
                 'active' => empty($items)
             ];

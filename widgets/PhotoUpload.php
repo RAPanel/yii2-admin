@@ -9,12 +9,13 @@
 namespace rere\admin\widgets;
 
 
+use Yii;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
 class PhotoUpload extends DropZone
 {
-    public $types = [];
+    public $types = null;
 
     public function init()
     {
@@ -48,13 +49,18 @@ JS;
     public function run()
     {
         $parent = parent::run();
+
+        $types = [];
+        foreach(explode(',', $this->types) as $type)
+            $types[trim($type)] = Yii::t('admin.photoTypes', trim(ucfirst($type)));
+
         $content = '';
         $this->value = $this->model->{$this->attribute};
         if (is_array($this->value))
             foreach ($this->value as $index => $data)
-                $content .= $this->render('photoTemplate', compact('index', 'data') + ['types' => $this->types]);
+                $content .= $this->render('photoTemplate', compact('index', 'data') + ['types' => $types]);
 
-        return Html::tag('div', $content, ['class' => 'photoWrapper']) . $parent . $this->render('photoTemplate', ['types' => $this->types]);
+        return Html::tag('div', $content, ['class' => 'photoWrapper']) . $parent . $this->render('photoTemplate', ['types' => $types]);
     }
 
 }

@@ -9,13 +9,14 @@
  * @var $view \yii\web\View
  */
 use rere\admin\widgets\FormGenerator;
+use rere\core\models\Module;
 use rere\core\models\Page;
 use rere\core\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 $selectList = [];
-foreach (Yii::$app->params['modules'] as $key => $val) $selectList[$key] = Yii::t('admin.module', $val);
+foreach (Module::all() as $key => $val) $selectList[$key] = Yii::t('admin.module', $val);
 $get = Yii::$app->request->get();
 if (isset($get['module_id'])) unset($get['module_id']);
 
@@ -43,7 +44,7 @@ if (!empty($data)):
         </div>
 
         <?= FormGenerator::widget([
-            'config' => require Yii::getAlias('@rere/' . $selectList[$base->module_id] . '/config/grid.php'),
+            'config' => $config,
             'form' => $form,
             'model' => $base,
         ]); ?>
@@ -51,5 +52,6 @@ if (!empty($data)):
         <?= Html::submitButton('сохранить') ?>
 
         <?php ActiveForm::end(); ?>
+        
     </div>
 </div>

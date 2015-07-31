@@ -9,6 +9,8 @@
 namespace rere\admin\controllers;
 
 use rere\core\models\Character;
+use rere\core\models\Module;
+use rere\core\models\ModuleSettings;
 use rere\core\models\Page;
 use rere\core\models\Photo;
 use Yii;
@@ -41,9 +43,30 @@ class EditController extends Controller
             $base->module_id = Yii::$app->session->get('editModule', 10);
 
         $selectList = [];
-        foreach (Yii::$app->params['modules'] as $key => $val)
+        foreach (Module::all() as $key => $val)
             $selectList[$key] = Yii::t('admin.module', $val);
-        $config = require Yii::getAlias('@rere/' . $selectList[$base->module_id] . '/config/grid.php');
+
+        $defaultConfig = $this->module->modulesConfig;
+
+        $settings = ModuleSettings::get($base->module_id);
+
+        foreach($settings as $key => $value){
+            if(isset($defaultConfig[$key]) && !$value){
+                unset($defaultConfig[$key]);
+            }
+            if($value){
+                if($key == 'photos' && $value){
+                    $defaultConfig['photos']['photos']['filesLimit'] = $value;
+                }
+                if(empty($defaultConfig[$key])){
+                    if($key == 'photosTypes' && $value){
+                        $defaultConfig['photos']['photos']['options']['types'] = $value;
+                    }
+                }
+            }
+        }
+
+        $config = $defaultConfig;
 
         if (($request = Yii::$app->request) && $request->isPost) {
             $models = [];
