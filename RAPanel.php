@@ -18,7 +18,6 @@ class RAPanel extends \yii\base\Module
 
     public function init()
     {
-        $this->modulesConfig = $this->getDefaultModulesConfig();
         $this->modulesConfig = ArrayHelper::merge($this->getDefaultModulesConfig(), $this->modulesConfig);
 
         \Yii::configure($this, require(__DIR__ . '/config.php'));
