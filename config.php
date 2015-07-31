@@ -9,11 +9,10 @@
 return [
     'defaultRoute' => 'structure',
     'layout' => 'index',
+    'modules'=>[
+
+    ],
     'components' => [
-        'user' => [
-            'class' => 'rere\user\Module',
-            // set custom module properties here ...
-        ],
         // список конфигураций компонентов
     ],
     'params' => [

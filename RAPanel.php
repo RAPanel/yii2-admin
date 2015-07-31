@@ -14,15 +14,17 @@ use yii\helpers\ArrayHelper;
 class RAPanel extends \yii\base\Module
 {
     public $settings;
-    public $modulesConfig;
+    public $modulesConfig = [];
 
     public function init()
     {
+        $this->modulesConfig = $this->getDefaultModulesConfig();
         $this->modulesConfig = ArrayHelper::merge($this->getDefaultModulesConfig(), $this->modulesConfig);
+
+        \Yii::configure($this, require(__DIR__ . '/config.php'));
 
         parent::init();
         // инициализация модуля с помощью конфигурации, загруженной из config.php
-        \Yii::configure($this, require(__DIR__ . '/config.php'));
         \Yii::$app->setModule('user', [
             'class' => 'rere\user\Module',
             'modelClasses' => [
