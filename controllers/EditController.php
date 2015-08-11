@@ -50,19 +50,16 @@ class EditController extends Controller
 
         $settings = ModuleSettings::get($base->module_id);
 
-        foreach($settings as $key => $value){
-            if(isset($defaultConfig[$key]) && !$value){
-                unset($defaultConfig[$key]);
-            }
-            if($value){
-                if($key == 'photos' && $value){
+        foreach ($settings as $key => $value) {
+            if ($value) {
+                if ($key == 'photos') {
                     $defaultConfig['photos']['photos']['filesLimit'] = $value;
                 }
-                if(empty($defaultConfig[$key])){
-                    if($key == 'photosTypes' && $value){
-                        $defaultConfig['photos']['photos']['options']['types'] = $value;
-                    }
+                if ($key == 'photosTypes') {
+                    $defaultConfig['photos']['photos']['options']['types'] = $value;
                 }
+            } elseif (isset($defaultConfig[$key])) {
+                unset($defaultConfig[$key]);
             }
         }
 
